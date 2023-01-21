@@ -7,7 +7,8 @@ const Add = (props) => {
         General: "",
         Wealth: "",
         Health: "",
-        Tips: "" 
+        Tips: "", 
+        Image:""
     }
 
     const [zodiac, setZodiac] = useState(emptyZodiac)
@@ -36,6 +37,8 @@ const Add = (props) => {
                 <input type="text" name="health" onChange={handleChange}/>
                 <label htmlFor="tips">Tips : </label>
                 <input type="text" name="tips" onChange={handleChange}/>
+                <label htmlFor="image">Image url : </label>
+                <input type="text" name="image" onChange={handleChange}/>
                 <input type="submit"/>
             </form>
         </>

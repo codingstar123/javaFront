@@ -8,9 +8,10 @@ function App() {
   let [zodiacs, setZodiacs] = useState([])
 
   // Delete Route 
-  const handleDelete = (event) => {
+  const handleDelete = (editZodiac) => {
+    console.log(editZodiac)
     axios
-      .delete('http://localhost:8000/api/zodiacs/' + event.target.value)
+      .delete('http://localhost:8080/todos/' + editZodiac.id)
       .then((response) => {
         getZodiacs()
       })
@@ -19,7 +20,7 @@ function App() {
   // Create Route 
   const handleCreate = (addZodiac) =>{
     axios
-      .post('http://localhost:8000/api/zodiacs', addZodiac)
+      .post('http://localhost:8080/todos', addZodiac)
       .then((res) =>{
         getZodiacs()
       })
@@ -27,7 +28,7 @@ function App() {
   // Show Route 
   const getZodiacs =() =>{
     axios
-      .get('http://localhost:8000/api/zodiacs')
+      .get('http://localhost:8080/todos')
       .then(
         (res)=>setZodiacs(res.data),
         (err) => console.log(err)
@@ -37,7 +38,7 @@ function App() {
   const handleUpdate = (editZodiac) => {
     console.log(editZodiac)
     axios
-      .put('http://localhost:8000/api/zodiacs/' + editZodiac.id, editZodiac)
+      .put('http://localhost:8080/todos/' + editZodiac.id, editZodiac)
       .then((response) => {
         getZodiacs()
       })
@@ -57,14 +58,15 @@ function App() {
           zodiacs.map((zodiac) =>{
             return(
               <div className="zodiac" key={zodiac.id}>
-                <h4>Zodiac : {zodiac.name}</h4>
+                <h4>Zodiac : {zodiac.zodiac}</h4>
                 <h5>Birth Year : {zodiac.year} </h5>
                 <p>In General : {zodiac.general}</p>
                 <p>Wealth & Careear : {zodiac.wealth}</p>
                 <p>Health & Relationship : {zodiac.health}</p>
                 <p>Tips and Advice : {zodiac.tips}</p>
+                <img src={zodiac.image} /> 
                 <Edit handleUpdate={handleUpdate} zodiac={zodiac}/>
-                <button onClick={handleDelete} value={zodiac.id}>X</button>
+                <button onClick={()=>{handleDelete(zodiac)}}>X</button>
               </div>  
 
 

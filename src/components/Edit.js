@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Edit = (props) => {
 
-  const [zodiac, setZodiac] = useState([...props.zodiac])
+  const [zodiac, setZodiac] = useState({...props.zodiac})
 
   const handleChange = (event) => {
     setZodiac({ ...zodiac, [event.target.name]: event.target.value })
@@ -20,7 +20,7 @@ const Edit = (props) => {
         <summary>Edit Zodiac</summary>
         <form onSubmit={handleSubmit}>
             <label htmlFor="zodiac">Zodiac : </label>
-            <input type="text" name="name" value={zodiac.name} onChange={handleChange}/>
+            <input type="text" name="zodiac" value={zodiac.zodiac} onChange={handleChange}/>
             <label htmlFor="year">Year : </label>
             <input type="text" name="year" value={zodiac.year} onChange={handleChange}/>
             <label htmlFor="general">General : </label>
@@ -32,7 +32,6 @@ const Edit = (props) => {
             <label htmlFor="tips">Tips : </label>
             <input type="text" name="tips" value={zodiac.tips} onChange={handleChange}/>
             <input type="submit"/>
-          <input type="submit" />
         </form>
       </details>
     </>
