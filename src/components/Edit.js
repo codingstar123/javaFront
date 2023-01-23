@@ -17,7 +17,7 @@ const Edit = (props) => {
   return (
     <>
       <details>
-        <summary>Edit Zodiac</summary>
+        <summary type="button" class="btn btn-primary">Edit Zodiac</summary>
         <form onSubmit={handleSubmit}>
             <label htmlFor="zodiac">Zodiac : </label>
             <input type="text" name="zodiac" value={zodiac.zodiac} onChange={handleChange}/>
@@ -31,7 +31,9 @@ const Edit = (props) => {
             <input type="text" name="health" value={zodiac.health} onChange={handleChange}/>
             <label htmlFor="tips">Tips : </label>
             <input type="text" name="tips" value={zodiac.tips} onChange={handleChange}/>
-            <input type="submit"/>
+            <label htmlFor="image">Image url : </label>
+            <input type="text" name="image" onChange={handleChange}/>
+            <input type="submit" class="btn btn-success" />
         </form>
       </details>
     </>

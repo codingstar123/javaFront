@@ -11,6 +11,7 @@ const Add = (props) => {
         Image:""
     }
 
+
     const [zodiac, setZodiac] = useState(emptyZodiac)
 
     const handleChange = (event) => {
@@ -23,24 +24,33 @@ const Add = (props) => {
       }
       
     return(
-        <>
+        <>  
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor="zodiac">Zodiac : </label>
                 <input type="text" name="zodiac" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="year">Year : </label>
                 <input type="text" name="year" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="general">General : </label>
                 <input type="text" name="general" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="wealth">Wealth : </label>
                 <input type="text" name="wealth" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="health">Health : </label>
                 <input type="text" name="health" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="tips">Tips : </label>
                 <input type="text" name="tips" onChange={handleChange}/>
+                <br/>
                 <label htmlFor="image">Image url : </label>
                 <input type="text" name="image" onChange={handleChange}/>
-                <input type="submit"/>
+                <br/>
+                <input type="submit" class="btn btn-success"/>
             </form>
+              
         </>
     )
 }

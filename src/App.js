@@ -11,7 +11,7 @@ function App() {
   const handleDelete = (editZodiac) => {
     console.log(editZodiac)
     axios
-      .delete('http://localhost:8080/todos/' + editZodiac.id)
+      .delete('https://javaapp.herokuapp.com/todos/' + editZodiac.id)
       .then((response) => {
         getZodiacs()
       })
@@ -20,7 +20,7 @@ function App() {
   // Create Route 
   const handleCreate = (addZodiac) =>{
     axios
-      .post('http://localhost:8080/todos', addZodiac)
+      .post('https://javaapp.herokuapp.com/todos', addZodiac)
       .then((res) =>{
         getZodiacs()
       })
@@ -28,7 +28,7 @@ function App() {
   // Show Route 
   const getZodiacs =() =>{
     axios
-      .get('http://localhost:8080/todos')
+      .get('https://javaapp.herokuapp.com/todos')
       .then(
         (res)=>setZodiacs(res.data),
         (err) => console.log(err)
@@ -38,7 +38,7 @@ function App() {
   const handleUpdate = (editZodiac) => {
     console.log(editZodiac)
     axios
-      .put('http://localhost:8080/todos/' + editZodiac.id, editZodiac)
+      .put('https://javaapp.herokuapp.com/todos/' + editZodiac.id, editZodiac)
       .then((response) => {
         getZodiacs()
       })
@@ -51,25 +51,29 @@ function App() {
 
   return (
     <>
-      <h1>APP</h1>
+      <img src="https://cdn.images.express.co.uk/img/dynamic/130/1200x712/4495437.jpg?r=1673251951012" class="img-fluid" alt="..."></img>
       <Add handleCreate={handleCreate}/>
+      
       <div className="zodiacs">
         {
           zodiacs.map((zodiac) =>{
             return(
-              <div className="zodiac" key={zodiac.id}>
-                <h4>Zodiac : {zodiac.zodiac}</h4>
-                <h5>Birth Year : {zodiac.year} </h5>
-                <p>In General : {zodiac.general}</p>
-                <p>Wealth & Careear : {zodiac.wealth}</p>
-                <p>Health & Relationship : {zodiac.health}</p>
-                <p>Tips and Advice : {zodiac.tips}</p>
-                <img src={zodiac.image} /> 
-                <Edit handleUpdate={handleUpdate} zodiac={zodiac}/>
-                <button onClick={()=>{handleDelete(zodiac)}}>X</button>
-              </div>  
+              <div className="card" key={zodiac.id}>
+                <img src={zodiac.image} className="card-img-top" /> 
+                <div className="card-body">
+                  <h1>Zodiac : {zodiac.zodiac}</h1>
+                  <h4>Birth Year : {zodiac.year} </h4>
+                </div>
 
-
+                <div className="list-group list-group-flush">
+                  <h5 className="list-group-item">In General : {zodiac.general}</h5>
+                  <h5 className="list-group-item">Wealth & Careear : {zodiac.wealth}</h5>
+                  <h5 className="list-group-item">Health & Relationshilp : {zodiac.health}</h5>
+                  <h5 className="list-group-item">Tips and Advice : {zodiac.tips}</h5>
+                </div>
+                  <Edit handleUpdate={handleUpdate} zodiac={zodiac}/>
+                  <button type="button" class="btn btn-danger" onClick={()=>{handleDelete(zodiac)}}>X</button>
+              </div> 
             )
           })
         }
